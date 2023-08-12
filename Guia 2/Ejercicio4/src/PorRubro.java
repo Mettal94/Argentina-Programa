@@ -9,7 +9,7 @@ public class PorRubro extends javax.swing.JInternalFrame {
     };
     public PorRubro() {
         initComponents();
-        //cargarCombo();
+        cargarCombo();
         armarCabecera();
     }
 
@@ -30,7 +30,7 @@ public class PorRubro extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Indique una categoria");
 
-        jcCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "COMESTIBLES", "PERFUMERIA", "LIMPIEZA" }));
+        jcCategorias.setSelectedIndex(-1);
         jcCategorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcCategoriasActionPerformed(evt);
@@ -106,7 +106,7 @@ public class PorRubro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTProductos;
-    private javax.swing.JComboBox<String> jcCategorias;
+    private javax.swing.JComboBox<Categorias> jcCategorias;
     // End of variables declaration//GEN-END:variables
 
     //creacion de tabla
@@ -125,11 +125,11 @@ public class PorRubro extends javax.swing.JInternalFrame {
             modelo3.removeRow(f);
         }
     }
-    /*
+    
     private void cargarCombo(){
         jcCategorias.addItem(Categorias.COMESTIBLES);
         jcCategorias.addItem(Categorias.LIMPIEZA);
         jcCategorias.addItem(Categorias.PERFUMERIA);
     }
-*/
+
 }
