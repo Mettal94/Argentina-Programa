@@ -56,6 +56,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jMPorRubro.setText("Por Rubro");
+        jMPorRubro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMPorRubroActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMPorRubro);
 
         jMPorPrecio.setText("Por Precio");
@@ -125,6 +130,15 @@ public class Menu extends javax.swing.JFrame {
         escritorio.add(pp);
         escritorio.moveToFront(pp);
     }//GEN-LAST:event_jMPorPrecioActionPerformed
+
+    private void jMPorRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMPorRubroActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        PorRubro pr = new PorRubro();
+        pr.setVisible(true);
+        escritorio.add(pr);
+        escritorio.moveToFront(pr);
+    }//GEN-LAST:event_jMPorRubroActionPerformed
 
     
     public static void main(String args[]) {
