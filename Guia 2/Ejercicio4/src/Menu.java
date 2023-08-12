@@ -37,6 +37,11 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Administracion");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
         jMProductos.setText("Productos");
         jMProductos.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +144,15 @@ public class Menu extends javax.swing.JFrame {
         escritorio.add(pr);
         escritorio.moveToFront(pr);
     }//GEN-LAST:event_jMPorRubroActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        GestionProductos gp = new GestionProductos();
+        gp.setVisible(true);
+        escritorio.add(gp);
+        escritorio.moveToFront(gp);
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     
     public static void main(String args[]) {
