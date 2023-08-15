@@ -81,10 +81,7 @@ public class GestionProductos extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jbGuardar)
                         .addGap(18, 18, 18)
-                        .addComponent(jbEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-                        .addComponent(jbSalir)
-                        .addGap(19, 19, 19))
+                        .addComponent(jbEliminar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -95,16 +92,18 @@ public class GestionProductos extends javax.swing.JInternalFrame {
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jtCodigo)
-                                    .addComponent(jtStock, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtPrecio, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jcRubro, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(24, 24, 24)
-                                .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jbSalir)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jtPrecio)
+                                        .addComponent(jtCodigo, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jtDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jcRubro, javax.swing.GroupLayout.Alignment.LEADING, 0, 145, Short.MAX_VALUE)
+                                        .addComponent(jtStock, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addGap(34, 34, 34)
+                                    .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,13 +130,13 @@ public class GestionProductos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbNuevo)
                     .addComponent(jbGuardar)
+                    .addComponent(jbNuevo)
                     .addComponent(jbEliminar)
                     .addComponent(jbSalir))
-                .addGap(32, 32, 32))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -149,30 +148,27 @@ public class GestionProductos extends javax.swing.JInternalFrame {
         int stock = Integer.parseInt(jtStock.getText());
         Double precio = Double.parseDouble(jtPrecio.getText());
         String descripcion = jtDescripcion.getText();
-        boolean x = false;
+        boolean coincidencia = false;
         for (DataBase prod : Menu.listaDataBase) {
-                if (prod.getCodigo() == codigo && (!x)) {
-
+            if (prod.getCodigo() == codigo) {
                 prod.setStock(prod.getStock() + stock);
-                JOptionPane.showMessageDialog(this, "Se actualizó el stock de" + prod.getDescripcion());
-                x = true;
+                JOptionPane.showMessageDialog(this, "Se actualizó el stock de: " + prod.getDescripcion());
+                coincidencia = true;
             }
         }
-        if(x==false){
-             switch (jcRubro.getSelectedIndex()) {
-                    case 1:
-                        Menu.listaDataBase.add(new DataBase(codigo, descripcion, precio, stock, Categorias.COMESTIBLES));
-                        JOptionPane.showMessageDialog(this, "Se agregó correctamente el producto: " +descripcion);
-                        break;
-                    case 2:
-                        Menu.listaDataBase.add(new DataBase(codigo, descripcion, precio, stock, Categorias.LIMPIEZA));
-                        JOptionPane.showMessageDialog(this, "Se agregó correctamente el producto: " + descripcion);
-                        break;
-                    case 3:
-                        Menu.listaDataBase.add(new DataBase(codigo, descripcion, precio, stock, Categorias.PERFUMERIA));
-                        JOptionPane.showMessageDialog(this, "Se agregó correctamente el producto: " + descripcion);
-                        break;
-                }
+        if (coincidencia == false) {
+            switch (jcRubro.getSelectedIndex()) {
+                case 1:
+                    Menu.listaDataBase.add(new DataBase(codigo, descripcion, precio, stock, Categorias.COMESTIBLES));
+                    break;
+                case 2:
+                    Menu.listaDataBase.add(new DataBase(codigo, descripcion, precio, stock, Categorias.LIMPIEZA));
+                    break;
+                case 3:
+                    Menu.listaDataBase.add(new DataBase(codigo, descripcion, precio, stock, Categorias.PERFUMERIA));
+                    break;
+            }
+            JOptionPane.showMessageDialog(this, "Se agregó correctamente el producto: " + descripcion);
         }
     }//GEN-LAST:event_jbNuevoActionPerformed
 
