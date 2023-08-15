@@ -57,6 +57,11 @@ public class GestionProductos extends javax.swing.JInternalFrame {
         });
 
         jbGuardar.setText("GUARDAR");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
+            }
+        });
 
         jbEliminar.setText("ELIMINAR");
 
@@ -205,6 +210,17 @@ public class GestionProductos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El código ingresado no es válido");
         }   
     }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        for (DataBase prod : Menu.listaDataBase){
+            if (prod.getCodigo()== Integer.parseInt(jtCodigo.getText())){
+                prod.setDescripcion(jtDescripcion.getText());
+                prod.setPrecio(Integer.parseInt(jtPrecio.getText()));
+                prod.setStock(Integer.parseInt(jtStock.getText()));
+                prod.setRubro(jcRubro.getItemAt(WIDTH));
+            }
+        }
+    }//GEN-LAST:event_jbGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
