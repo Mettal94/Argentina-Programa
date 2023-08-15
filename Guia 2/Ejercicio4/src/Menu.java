@@ -201,12 +201,12 @@ public class Menu extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void productosagregados(){
-        listaDataBase.add(new DataBase(5,"Azucar",300,50,Categorias.COMESTIBLES));
-        listaDataBase.add(new DataBase(8,"yerba",1000,50,Categorias.COMESTIBLES));
-        listaDataBase.add(new DataBase(1,"lavandina",600,50,Categorias.LIMPIEZA));
-        listaDataBase.add(new DataBase(11,"detergente",480,50,Categorias.LIMPIEZA));
-        listaDataBase.add(new DataBase(556,"Perfune",1500,50,Categorias.PERFUMERIA));
-        listaDataBase.add(new DataBase(353,"desodorante",750,50,Categorias.PERFUMERIA));
+        listaDataBase.add(new DataBase(5,"Azúcar",300,50,Categorias.COMESTIBLES));
+        listaDataBase.add(new DataBase(8,"Yerba",1000,50,Categorias.COMESTIBLES));
+        listaDataBase.add(new DataBase(1,"Lavandina",600,50,Categorias.LIMPIEZA));
+        listaDataBase.add(new DataBase(11,"Detergente",480,50,Categorias.LIMPIEZA));
+        listaDataBase.add(new DataBase(556,"Perfume",1500,50,Categorias.PERFUMERIA));
+        listaDataBase.add(new DataBase(353,"Desodorante",750,50,Categorias.PERFUMERIA));
         
     }
 }
