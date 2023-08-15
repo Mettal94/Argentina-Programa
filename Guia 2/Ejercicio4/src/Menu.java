@@ -104,6 +104,12 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMProductosActionPerformed
         // TODO add your handling code here:
+         escritorio.removeAll();
+        escritorio.repaint();
+        GestionProductos gp = new GestionProductos();
+        gp.setVisible(true);
+        escritorio.add(gp);
+        escritorio.moveToFront(gp);
     }//GEN-LAST:event_jMProductosActionPerformed
 
     //evento desconocido
@@ -146,12 +152,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMPorRubroActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        GestionProductos gp = new GestionProductos();
-        gp.setVisible(true);
-        escritorio.add(gp);
-        escritorio.moveToFront(gp);
+       
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     

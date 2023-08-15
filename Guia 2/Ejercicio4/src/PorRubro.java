@@ -20,7 +20,7 @@ public class PorRubro extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jcCategorias = new javax.swing.JComboBox();
+        jcCategorias = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTProductos = new javax.swing.JTable();
 
@@ -31,7 +31,7 @@ public class PorRubro extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Indique una categoria");
 
-        jcCategorias.setSelectedIndex(-1);
+        jcCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Comestibles", "Perfumeria", "Limpieza" }));
         jcCategorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcCategoriasActionPerformed(evt);
@@ -90,15 +90,24 @@ public class PorRubro extends javax.swing.JInternalFrame {
     private void jcCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCategoriasActionPerformed
         borrarFilas();
         for (DataBase prod:Menu.listaDataBase) {
-            if (prod.getRubro().equals(jcCategorias.getSelectedItem())) {
+            if(prod.getRubro().toString().equalsIgnoreCase((String)jcCategorias.getSelectedItem())) {
                 modelo3.addRow(new Object[]{
                 prod.getCodigo(),
                 prod.getDescripcion(),
                 prod.getPrecio(),
                 prod.getStock()
                 });
-            }     
+            }else if(jcCategorias.getSelectedItem().equals("Seleccionar")){
+                 modelo3.addRow(new Object[]{
+                prod.getCodigo(),
+                prod.getDescripcion(),
+                prod.getPrecio(),
+                prod.getStock()
+                });
+            } 
+             
         }
+       
     }//GEN-LAST:event_jcCategoriasActionPerformed
 
 
@@ -107,7 +116,7 @@ public class PorRubro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTProductos;
-    private javax.swing.JComboBox jcCategorias;
+    private javax.swing.JComboBox<String> jcCategorias;
     // End of variables declaration//GEN-END:variables
 
     //creacion de tabla
@@ -127,9 +136,11 @@ public class PorRubro extends javax.swing.JInternalFrame {
         }
     }
     
-//    private void cargarCombo(){
-//      jcCategorias<Categorias> comboBox = new jcCategorias<>(Categorias.values());
-//        
-//    }
+    private void cargarCombo(){
+        jcCategorias.addItem("Comestibles");
+        jcCategorias.addItem("Limpieza");
+        jcCategorias.addItem("Perfumería");
+        
+    }
 
 }
