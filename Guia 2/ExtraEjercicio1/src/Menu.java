@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 public class Menu extends javax.swing.JFrame {
     private DefaultTableModel modelo = new DefaultTableModel(){
@@ -184,7 +185,10 @@ public class Menu extends javax.swing.JFrame {
     
         private void armarCabecera(){
         modelo.addColumn("Descripcion");
-        modelo.addColumn("Estado");
+        modelo.addColumn("Estagdo");
+        //TableColumn completado = jTable1.getColumnModel().getColumn(1);
+        //completado.setCellRenderer(new CheckboxRenderer);
+        //jTable1.getColumnModel().getColumn(1).setCellEditor(New DefaulCellEditor(new));
         jTable1.setModel(modelo);
     }
     
@@ -202,8 +206,14 @@ public class Menu extends javax.swing.JFrame {
         for (; f >=0; f--) {
             modelo.removeRow(f);
         }
+        String x;
         for(Tareas tar:Menu.listaTareas){
-                modelo.addRow(new Object[]{tar.getDescripcion(),tar.isEstado()});
+            if (tar.isEstado()== true){
+                x = "Completada";
+            } else {
+                x = "Pendiente";
+            }
+                modelo.addRow(new Object[]{tar.getDescripcion(),x});
         }
     }
 
