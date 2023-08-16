@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Menu extends javax.swing.JFrame {
@@ -13,6 +14,7 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         armarCabecera();
         prueba();
+        reescribir();
         
     }
 
@@ -31,7 +33,7 @@ public class Menu extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
+                {null,  new Boolean(false)},
                 {null, null},
                 {null, null},
                 {null, null}
@@ -62,8 +64,18 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jbEliminarTarea.setText("Eliminar Tarea");
+        jbEliminarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarTareaActionPerformed(evt);
+            }
+        });
 
         jbCambiarEstado.setText("Cambiar Estado");
+        jbCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCambiarEstadoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("LISTA DE TAREAS");
@@ -73,23 +85,18 @@ public class Menu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(276, 276, 276)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(276, 276, 276)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jbCambiarEstado))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jbAgregarTarea, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jbEliminarTarea, javax.swing.GroupLayout.Alignment.TRAILING))))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addComponent(jbAgregarTarea)
+                    .addComponent(jbEliminarTarea)
+                    .addComponent(jbCambiarEstado))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +120,26 @@ public class Menu extends javax.swing.JFrame {
 
     private void jbAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarTareaActionPerformed
         // Boton Agregar Tarea
+        String texto = JOptionPane.showInputDialog(this,"Ingrese una nueva tarea");
+        listaTareas.add(new Tareas (texto,false));
+        reescribir();
+        
     }//GEN-LAST:event_jbAgregarTareaActionPerformed
+
+    private void jbEliminarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarTareaActionPerformed
+        // Boton Borrar Tarea
+        int seleccionado = jTable1.getSelectedRow();
+        listaTareas.remove(seleccionado);
+        reescribir();
+    }//GEN-LAST:event_jbEliminarTareaActionPerformed
+
+    private void jbCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCambiarEstadoActionPerformed
+        // Boton Cambiar estado
+        int seleccionado = jTable1.getSelectedRow();
+        Tareas modificado = listaTareas.get(seleccionado);
+        modificado.setEstado(!modificado.isEstado());
+        reescribir();
+    }//GEN-LAST:event_jbCambiarEstadoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -169,10 +195,16 @@ public class Menu extends javax.swing.JFrame {
         listaTareas.add(new Tareas ("escuchar MetallicA",false));
         listaTareas.add(new Tareas ("llorar a la tarde",false));
         
+        
+    }
+    private void reescribir(){
+        int f=jTable1.getRowCount()-1;
+        for (; f >=0; f--) {
+            modelo.removeRow(f);
+        }
         for(Tareas tar:Menu.listaTareas){
                 modelo.addRow(new Object[]{tar.getDescripcion(),tar.isEstado()});
         }
-
     }
 
 }
