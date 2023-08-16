@@ -64,8 +64,18 @@ public class GestionProductos extends javax.swing.JInternalFrame {
         });
 
         jbEliminar.setText("ELIMINAR");
+        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarActionPerformed(evt);
+            }
+        });
 
         jbSalir.setText("SALIR");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         jbBuscar.setText("Buscar");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -167,13 +177,13 @@ public class GestionProductos extends javax.swing.JInternalFrame {
         }
         if (coincidencia == false) {
             switch (jcRubro.getSelectedIndex()) {
-                case 1:
+                case 0:
                     Menu.listaDataBase.add(new DataBase(codigo, descripcion, precio, stock, Categorias.COMESTIBLES));
                     break;
-                case 2:
+                case 1:
                     Menu.listaDataBase.add(new DataBase(codigo, descripcion, precio, stock, Categorias.LIMPIEZA));
                     break;
-                case 3:
+                case 2:
                     Menu.listaDataBase.add(new DataBase(codigo, descripcion, precio, stock, Categorias.PERFUMERIA));
                     break;
             }
@@ -216,12 +226,26 @@ public class GestionProductos extends javax.swing.JInternalFrame {
         for (DataBase prod : Menu.listaDataBase){
             if (prod.getCodigo()== Integer.parseInt(jtCodigo.getText())){
                 prod.setDescripcion(jtDescripcion.getText());
-                prod.setPrecio(Integer.parseInt(jtPrecio.getText()));
+                prod.setPrecio(Double.parseDouble(jtPrecio.getText()));
                 prod.setStock(Integer.parseInt(jtStock.getText()));
-                prod.setRubro(jcRubro.getItemAt(WIDTH));
+                prod.setRubro((Categorias)jcRubro.getSelectedItem());
             }
         }
     }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        // boton eliminar
+        for (DataBase prod : Menu.listaDataBase){
+            if (prod.getCodigo()== Integer.parseInt(jtCodigo.getText())){
+                Menu.listaDataBase.remove(prod);
+            }
+        }
+    }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        // botn salir
+        this.dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
