@@ -1,10 +1,12 @@
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public class GestionProductos extends javax.swing.JInternalFrame {
 
     public GestionProductos() {
         initComponents();
+        jcRubro.setModel(new DefaultComboBoxModel<>(Categorias.values()));
     }
 
     @SuppressWarnings("unchecked")
@@ -47,8 +49,6 @@ public class GestionProductos extends javax.swing.JInternalFrame {
             }
         });
 
-        jcRubro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Comestibles", "Limpieza", "Perfumeria" }));
-
         jbNuevo.setText("NUEVO");
         jbNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,6 +57,11 @@ public class GestionProductos extends javax.swing.JInternalFrame {
         });
 
         jbGuardar.setText("GUARDAR");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
+            }
+        });
 
         jbEliminar.setText("ELIMINAR");
 
@@ -81,8 +86,7 @@ public class GestionProductos extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jbGuardar)
                         .addGap(18, 18, 18)
-                        .addComponent(jbEliminar)
-                        .addContainerGap(138, Short.MAX_VALUE))
+                        .addComponent(jbEliminar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -102,8 +106,8 @@ public class GestionProductos extends javax.swing.JInternalFrame {
                                     .addComponent(jtStock, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(18, 18, 18)
                                 .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 16, 16)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(16, 16, 16)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addComponent(jLabel1)
@@ -190,6 +194,9 @@ public class GestionProductos extends javax.swing.JInternalFrame {
                     jtDescripcion.setText(prod.getDescripcion());
                     jtPrecio.setText(prod.getPrecio() + "");
                     jtStock.setText(prod.getStock() + "");
+                    
+                    jcRubro.setSelectedItem(prod.getRubro());
+                    /*
                     if (prod.getRubro().toString().equalsIgnoreCase("Comestibles")) {
                         jcRubro.setSelectedIndex(1);
                     } else if (prod.getRubro().toString().equalsIgnoreCase("Limpieza")) {
@@ -197,12 +204,24 @@ public class GestionProductos extends javax.swing.JInternalFrame {
                     } else {
                         jcRubro.setSelectedIndex(3);
                     }
+                    */
                 }
             }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(this, "El código ingresado no es válido");
         }   
     }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        for (DataBase prod : Menu.listaDataBase){
+            if (prod.getCodigo()== Integer.parseInt(jtCodigo.getText())){
+                prod.setDescripcion(jtDescripcion.getText());
+                prod.setPrecio(Integer.parseInt(jtPrecio.getText()));
+                prod.setStock(Integer.parseInt(jtStock.getText()));
+                prod.setRubro(jcRubro.getItemAt(WIDTH));
+            }
+        }
+    }//GEN-LAST:event_jbGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -217,7 +236,7 @@ public class GestionProductos extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JComboBox<String> jcRubro;
+    private javax.swing.JComboBox<Categorias> jcRubro;
     private javax.swing.JTextField jtCodigo;
     private javax.swing.JTextField jtDescripcion;
     private javax.swing.JTextField jtPrecio;

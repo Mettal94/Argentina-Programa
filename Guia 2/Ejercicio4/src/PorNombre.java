@@ -88,7 +88,7 @@ public class PorNombre extends javax.swing.JInternalFrame {
     private void jTNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombreKeyReleased
         borrarFilas();
         for(DataBase prod:Menu.listaDataBase){
-            if (prod.getDescripcion().startsWith(jTNombre.getText())) {
+            if (prod.getDescripcion().toLowerCase().startsWith(jTNombre.getText().toLowerCase())) {
                 modelo.addRow(new Object[]{
                 prod.getCodigo(),
                 prod.getDescripcion(),

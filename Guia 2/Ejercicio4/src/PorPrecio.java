@@ -1,4 +1,5 @@
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class PorPrecio extends javax.swing.JInternalFrame {
@@ -106,23 +107,27 @@ public class PorPrecio extends javax.swing.JInternalFrame {
     // lectura de campo
     private void jTPrecioMenorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPrecioMenorKeyReleased
         borrarFilas();
+        try {
         double busquedaMenor=0;
         double busquedaMayor=0;
         busquedaMenor = Double.parseDouble(jTPrecioMenor.getText());
         busquedaMayor = Double.parseDouble(jTPrecioMayor.getText());
        
         compararPrecio(busquedaMenor,busquedaMayor);
+        } catch (NumberFormatException e) {}
     }//GEN-LAST:event_jTPrecioMenorKeyReleased
 
     // lectura de campo
     private void jTPrecioMayorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPrecioMayorKeyReleased
         borrarFilas();
+        try {
         double busquedaMenor=0;
         double busquedaMayor=0;
         busquedaMenor = Double.parseDouble(jTPrecioMenor.getText());
         busquedaMayor = Double.parseDouble(jTPrecioMayor.getText());
        
         compararPrecio(busquedaMenor,busquedaMayor);
+        } catch (NumberFormatException e) {}
     }//GEN-LAST:event_jTPrecioMayorKeyReleased
     
     // comparacion de precios
