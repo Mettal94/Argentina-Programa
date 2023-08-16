@@ -1,4 +1,5 @@
 
+import java.util.Iterator;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -235,11 +236,21 @@ public class GestionProductos extends javax.swing.JInternalFrame {
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         // boton eliminar
-        for (DataBase prod : Menu.listaDataBase){
-            if (prod.getCodigo()== Integer.parseInt(jtCodigo.getText())){
-                Menu.listaDataBase.remove(prod);
-            }
-        }
+        DataBase producto = null;
+        for (Iterator<DataBase> it = Menu.listaDataBase.iterator(); it.hasNext();) {
+                producto = it.next();
+                if (producto.getCodigo()==Integer.parseInt(jtCodigo.getText())) {
+                    int confirmResult = JOptionPane.showInternalConfirmDialog(this, "¿Está seguro que desea eliminar el producto?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                    if (confirmResult == JOptionPane.YES_OPTION) {
+                        Menu.listaDataBase.remove(producto);
+                    }
+                    jtDescripcion.setText("");
+                    jtPrecio.setText("");
+                    jtStock.setText("");
+                    jtCodigo.setText("");
+                    break;
+                   }  
+                }
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
