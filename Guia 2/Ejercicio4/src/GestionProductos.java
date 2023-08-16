@@ -153,6 +153,7 @@ public class GestionProductos extends javax.swing.JInternalFrame {
         Double precio = Double.parseDouble(jtPrecio.getText());
         String descripcion = jtDescripcion.getText();
         boolean coincidencia = false;
+       
         for (DataBase prod : Menu.listaDataBase) {
             if (prod.getCodigo() == codigo) {
                 prod.setStock(prod.getStock() + stock);
