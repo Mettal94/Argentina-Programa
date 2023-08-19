@@ -1,8 +1,7 @@
 package agenda;
 
-import java.util.Comparator;
 
-public class Contacto {
+public class Contacto implements Comparable<Contacto> {
 
     private String nombre;
     private String apellido;
@@ -48,15 +47,14 @@ public class Contacto {
         this.tel = tel;
     }
 
-    public static class PorNombre implements Comparator<Contacto> {
-
-        @Override
-        public int compare(Contacto t1, Contacto t2) {
-            int orden = t1.getNombre().compareTo(t2.getNombre());
-            if (orden == 0) {
-                orden = t1.getApellido().compareTo(t2.getApellido());
-            }
-            return orden;
+    @Override
+    public int compareTo(Contacto t) {
+        int comparado = this.nombre.compareToIgnoreCase(t.nombre);
+        if(comparado == 0){
+            comparado = this.apellido.compareToIgnoreCase(t.apellido);
         }
+        return comparado;
     }
+
+   
 }
