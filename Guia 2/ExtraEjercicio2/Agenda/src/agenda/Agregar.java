@@ -135,10 +135,7 @@ public class Agregar extends javax.swing.JInternalFrame {
             principal.actualizarTabla();
             
             JOptionPane.showMessageDialog(this, "Se agregó correctamente el contacto " + nombre + " " + apellido);
-            jtNombre.setText("");
-            jtApellido.setText("");
-            jtEmail.setText("");
-            jtTelefono.setText("");
+            dispose();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "El número de teléfono no es válido");
         }
