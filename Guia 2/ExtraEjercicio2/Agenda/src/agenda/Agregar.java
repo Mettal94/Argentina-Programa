@@ -7,7 +7,6 @@ public class Agregar extends javax.swing.JInternalFrame {
 
     public Agregar() {
         initComponents();
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE); //ESTO PERMITE QUE SE CIERRE AL APRETAR LA CRUCECITA
         
     }
 
@@ -15,7 +14,6 @@ public class Agregar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -25,14 +23,11 @@ public class Agregar extends javax.swing.JInternalFrame {
         jtTelefono = new javax.swing.JTextField();
         jtEmail = new javax.swing.JTextField();
         jbAgregar = new javax.swing.JButton();
-        jbCancelar = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Nuevo contacto");
+        setTitle("Agregar un contacto nuevo");
 
         jLabel2.setText("Nombre");
 
@@ -49,13 +44,6 @@ public class Agregar extends javax.swing.JInternalFrame {
             }
         });
 
-        jbCancelar.setText("Cancelar");
-        jbCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCancelarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -64,8 +52,7 @@ public class Agregar extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbAgregar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,16 +67,11 @@ public class Agregar extends javax.swing.JInternalFrame {
                             .addComponent(jtApellido, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(141, 141, 141))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -106,10 +88,8 @@ public class Agregar extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5)
                     .addComponent(jtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbAgregar)
-                    .addComponent(jbCancelar))
-                .addContainerGap())
+                .addComponent(jbAgregar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,31 +116,22 @@ public class Agregar extends javax.swing.JInternalFrame {
             
             JOptionPane.showMessageDialog(this, "Se agregó correctamente el contacto " + nombre + " " + apellido);
             dispose();
+            principal.jbEliminar.setEnabled(true);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "El número de teléfono no es válido");
         }
-
+        
+        
 
     }//GEN-LAST:event_jbAgregarActionPerformed
 
-    private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
-        // Boton cancelar
-        int opcion = JOptionPane.showConfirmDialog(this, "¿Está segur@ que desea salir?", "Aceptar", JOptionPane.YES_NO_OPTION);
-        if (opcion == JOptionPane.YES_OPTION) {
-            
-            dispose();
-        }
-    }//GEN-LAST:event_jbCancelarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JButton jbAgregar;
-    private javax.swing.JButton jbCancelar;
     private javax.swing.JTextField jtApellido;
     private javax.swing.JTextField jtEmail;
     private javax.swing.JTextField jtNombre;
