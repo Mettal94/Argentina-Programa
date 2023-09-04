@@ -98,7 +98,18 @@ public class UniversidadEjemplo {
                 }
                 */
                 
-                //CONSIGNA G -- Desinscribir 
+                //CONSIGNA G -- Desinscribimos un alumno de las materias
+                /*
+                String sqlg = "DELETE FROM inscripcion WHERE idAlumno = 1;";
+                
+                PreparedStatement psg = conn.prepareStatement(sqlg);
+                
+                int filasg = psg.executeUpdate();
+                
+                if(filasg > 0){
+                    JOptionPane.showMessageDialog(null, "Se eliminó de la base de datos exitosamente el registro");
+                }
+                */
         } catch (ClassNotFoundException ex) {
            JOptionPane.showMessageDialog(null, "Falta cargar el driver");
            
